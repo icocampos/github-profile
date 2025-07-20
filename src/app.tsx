@@ -6,9 +6,9 @@ import { HeaderDesktop } from "./components/HeaderDesktop"
 import { InfoProfile } from "./components/InfoProfile"
 import { ToggleSegment } from "./components/ToggleSegment";
 import { SearchBar } from "./components/SearchBar";
-import { FilterButtons } from "./components/FilterButtons";
 import { RepositoryList } from "./components/RepositoryList";
 import { Pagination } from "./components/Pagination";
+import { RepoSelects } from "./components/RepoSelect";
 
 const App = () => {
   const { tab, setTab, search, setSearch, page, setPage } = useRepoStore();
@@ -19,16 +19,15 @@ const App = () => {
     repo.name.toLowerCase().includes(search.toLowerCase())
   )
 
-  const hasNextPage = (data?.length || 0) === 10; // Assuming 10 is the per_page limit
+  const hasNextPage = (data?.length || 0) === 3;
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <div className="w-full top-0 left-0 fixed z-50">
+        <header className="w-full top-0 left-0 fixed z-50">
           <HeaderDesktop />
-        </div>
-
-        <div className="w-full h-full sm:pt-20 lg:pl-48">
+        </header>
+        <main className="flex flex-col sm:flex-row">
+          <div className="w-full h-full pl-14 sm:pt-20 lg:pl-48 ">
             <InfoProfile
               avatarUrl="https://avatars.githubusercontent.com/u/82005138?v=4"
               username="Ícaro Campos"
@@ -43,30 +42,33 @@ const App = () => {
                 },
               ]}
             />  
-        </div>    
-        
-        <div className="max-w-3xl h-4/5 flex flex-col items-center pr-48 py-8 pl-8">
-          <ToggleSegment
-            selected={tab}
-            onSelect={setTab}
-            counts={{ repositories: 81, starred: 12 }} 
-          />
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-            <SearchBar value={search} onChange={setSearch} />
-            <FilterButtons />
           </div>
-          {isLoading && <p className="text-gray-500">Loading...</p>}
-          {error && <p className="text-red-500">Error loading repositories</p>}
 
-          {!isLoading && !error && (
-            <>
-              <RepositoryList repositories={filtered} />
-              <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
-            </>
-          )}
-        </div>
+          <div className="flex flex-col sm:pt-20 items-center justify-center w-full max-w-4xl bg-white lg:pr-96">
+            <ToggleSegment
+              selected={tab}
+              onSelect={setTab}
+              counts={{ repositories: 81, starred: 12 }} 
+            />
 
-      </div>
+            <div className="flex flex-row gap-2">
+              <SearchBar value={search} onChange={setSearch} />
+              <RepoSelects />
+            </div>
+            
+            {isLoading && <p className="text-gray-500">Loading...</p>}
+            {error && <p className="text-red-500">Error loading repositories</p>}
+
+            {!isLoading && !error && (
+              <>
+                <RepositoryList repositories={filtered} />
+                <Pagination page={page} setPage={setPage} hasNextPage={hasNextPage} />
+              </>
+            )}
+          </div>   
+        </main>  
+       
+
     </>
   )
 }

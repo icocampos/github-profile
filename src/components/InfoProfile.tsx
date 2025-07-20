@@ -25,7 +25,7 @@ export const InfoProfile: React.FC<InfoProfileProps> = ({
   links = [],
 }) => {
   return (
-    <div className='flex flex-col items-center bg-white rounded-lg p-6 shadow-md max-w-sm'>
+    <div className='flex flex-col items-center bg-white rounded-lg p-6 max-w-2xs'>
       <div className='relative'>
         <img
          src={avatarUrl}

@@ -13,10 +13,10 @@ type ToggleSegmentProps = {
 export const ToggleSegment: React.FC<ToggleSegmentProps> = ({ selected, onSelect, counts }) => {
 
     const baseClass = "flex-1 text-sm text-center font-medium py-2 border-b-2 cursor-pointer transition-all";
-    const activeClass = "border-blue-600 text-blue-600";
+    const activeClass = "border-red-600 text-gray-900";
     const inactiveClass = "border-transparent text-gray-500 hover:text-gray-700";
     return (
-        <div className="flex border-b border-gray-200 w-full max-w-md mx-auto mb-4">
+        <div className="flex border-b border-gray-200 w-md mx-auto mb-4">
             <div
                 onClick={() => onSelect('repositories')}
                 className={`${baseClass} ${selected === 'repositories' ? activeClass : inactiveClass}`}
