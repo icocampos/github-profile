@@ -1,5 +1,7 @@
 import { useRepoStore } from "./store/useRepoStore";
 import { useGitHubRepos } from "./hooks/useGitHubRepos";
+import { useGitHubUser } from "./hooks/useGitHubUser";
+import { useStarredCount } from "./hooks/useStarredCount";
 
 import { FaLink } from "react-icons/fa"
 import { HeaderDesktop } from "./components/HeaderDesktop"
@@ -13,6 +15,9 @@ import { RepoSelects } from "./components/RepoSelect";
 const App = () => {
   const { tab, setTab, search, setSearch, page, setPage } = useRepoStore();
   const { data, isLoading, error } = useGitHubRepos(tab, page);
+  const { data: user } = useGitHubUser();
+  const { data: starredCount } = useStarredCount();
+
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const filtered = (data || []).filter((repo: any) =>
@@ -27,28 +32,28 @@ const App = () => {
           <HeaderDesktop />
         </header>
         <main className="flex flex-col sm:flex-row">
-          <div className="w-full h-full pl-14 sm:pt-20 lg:pl-48 ">
+          <div className="w-full h-full flex flex-col items-center justify-center sm:pt-20 ">
             <InfoProfile
-              avatarUrl="https://avatars.githubusercontent.com/u/82005138?v=4"
-              username="Ícaro Campos"
-              bio="Software Engineer passionate about open source."
-              company="Tech Company"
-              location="City, Country"
+              avatarUrl={user?.avatar_url ?? ""}
+              username={user?.login ?? 'unknown'}
+              bio={user?.bio ?? 'No bio available'}
+              company={user?.company ?? 'Not specified'}
+              location={user?.location ?? 'Not specified'}
               links={[
                 {
                   label: "GitHub",
-                  url: "",
+                  url: user?.html_url ?? "",
                   icon: <FaLink />,
                 },
               ]}
             />  
           </div>
 
-          <div className="flex flex-col sm:pt-20 items-center justify-center w-full max-w-4xl bg-white lg:pr-96">
+          <div className="flex flex-col sm:pt-20 items-center justify-center w-full max-w-4xl bg-white lg:pr-96 px-8">
             <ToggleSegment
               selected={tab}
               onSelect={setTab}
-              counts={{ repositories: 81, starred: 12 }} 
+              counts={{ repositories: user?.public_repos ?? 0, starred: starredCount ?? 0 }} 
             />
 
             <div className="flex flex-row gap-2">

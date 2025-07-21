@@ -39,13 +39,13 @@ export const InfoProfile: React.FC<InfoProfileProps> = ({
       <h1 className='text-2xl font-bold mt-4'>{username}</h1>
       <p className='text-gray-500 text-center'>{bio}</p>
       {company && (
-        <div className='flex items-center text-gray-600 mt-2 text-sm'>
+        <div className='flex items-center text-blue-600 mt-2 text-sm'>
           <MdWork className='mr-2' />
           {company}
         </div>
       )}
       {location && (
-        <div className='flex items-center text-gray-600 mt-2 text-sm'>
+        <div className='flex items-center text-blue-600 mt-2 text-sm'>
           <FaMapMarkerAlt className='mr-2' />
           {location}
         </div>

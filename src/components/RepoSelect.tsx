@@ -23,7 +23,7 @@ export const RepoSelects = () => {
     <div className="flex flex-col sm:flex-row gap-2">
       <Select value={type} onValueChange={setType}>
         <SelectTrigger className={customTriggerClass}>
-          <ChevronDown size={16} />
+          <ChevronDown size={16} className="text-amber-50" />
           <SelectValue placeholder="Type" />
         </SelectTrigger>
         <SelectContent>
@@ -37,7 +37,7 @@ export const RepoSelects = () => {
 
       <Select value={language} onValueChange={setLanguage}>
         <SelectTrigger className={customTriggerClass}>
-          <ChevronDown size={16} />
+          <ChevronDown size={16} className="text-amber-50" />
           <SelectValue placeholder="Language" />
         </SelectTrigger>
         <SelectContent>
