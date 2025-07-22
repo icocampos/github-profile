@@ -14,6 +14,7 @@ Aplicação web para visualizar perfis do GitHub com interface moderna, responsi
 - [TanStack React Query](https://tanstack.com/query/latest) (API e cache)
 - [Radix UI](https://www.radix-ui.com/)
 - [Lucide React Icons](https://lucide.dev/)
+- [React Router Dom](https://reactrouter.com/home)
 
 ---
 
