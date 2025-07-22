@@ -9,7 +9,7 @@ interface SearchBarProps {
 export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
     return (
         <>
-           <div className="flex items-center border rounded-md px-3 py-2 w-full max-w-md">
+           <div className="flex items-center rounded-md px-3 w-full max-w-md">
                 <Search className="text-gray-500 mr-2" size={16} />
                 <input
                 type="text"

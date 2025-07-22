@@ -50,11 +50,13 @@ const ProfilePage = () => {
           </div>
 
           <div className="flex flex-col sm:pt-20 items-center justify-center w-full max-w-4xl bg-white lg:pr-96 px-8">
-            <ToggleSegment
+            <div className="px-0">
+              <ToggleSegment
               selected={tab}
               onSelect={setTab}
               counts={{ repositories: user?.public_repos ?? 0, starred: starredCount ?? 0 }} 
             />
+            </div>
 
             <div className="flex flex-row gap-2">
               <SearchBar value={search} onChange={setSearch} />
