@@ -74,8 +74,7 @@ Acesse no navegador:
 
 ## 📤 Deploy
 
-Este projeto ainda será publicado.  
-O link de acesso será adicionado em breve.
+https://github-profile-flax.vercel.app/
 
 ---
 
